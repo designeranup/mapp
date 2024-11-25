@@ -8,8 +8,11 @@ let selectedTableId = null;
 let selectedRowId = null;
 let selectedRecords = null;
 let mode = 'multi';
+//updated code
+"use strict";
 let mapSource = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-let mapCopyright = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CartoDB</a>';
+let mapCopyright = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>';
+
 //let mapSource = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
 //let mapCopyright = 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012';
 // Required, Label value
@@ -43,6 +46,12 @@ const selectedIcon =  new L.Icon({
 });
 const defaultIcon =  new L.Icon.Default();
 
+const tiles = L.tileLayer(mapSource, { attribution: mapCopyright });
+
+const map = L.map('map', {
+  layers: [tiles],
+  wheelPxPerZoomLevel: 90, // px, default 60, slows scrollwheel zoom
+});
 
 
 // Creates clusterIcons that highlight if they contain selected row
